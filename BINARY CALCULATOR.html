@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <title>CALCULATOR</title>
+        <link rel="stylesheet" type="text/css" href="D:\web development\FRONT END\fontawesome-free-5.11.1-web\css\all.css">
+        <style>
+            
+            body {
+                background: #355C7D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  width: 50%;
+  
+  align-items: center;
+  margin: 240px;
+  margin-left: 500px;
+}
+
+#container{
+    width: 80%;
+    border-style: inset;;
+    background: #3E5151;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#buttonContainer > #buttonClass{
+  width: 25%;
+  height: 36px;
+  font-size: 18px;
+  margin:0;
+  float: left;
+}
+#res {
+  background-color: lightgray;
+  border: solid;
+  height: 48px;
+  font-size: 20px;
+  width:100%;
+}
+#btn0, #btn1 {
+  background-color: lightgreen;
+  color: brown;
+  width: 24%;
+  height: 40px;
+}
+
+#btnClr, #btnEql {
+  background-color: darkgreen;
+  color: white;
+  width: 24%;
+  height: 40px;
+}
+
+.buttonClass1 {
+  background-color: rosybrown;
+  color:beige;
+  width: 24%;  
+  height: 40px;
+}
+#h1{
+ padding-left: 200px;
+ margin: 0px;
+ height: 35px;
+ padding-right: 120px;;
+}
+#butt{
+    margin-left: 8px;
+    align-items: center;
+}
+.fa-calculator{
+    float: right;
+}
+        </style>
+    </head>
+    
+    <body>
+        <div id="container" >
+            <h1 id="h1">BINARY CALCULATOR <i class="fa fa-calculator" aria-hidden="true"></i></h1>
+            <div id="btns" class="buttonContainer">
+                <button id="res" class="resClass"></button>
+                <div id="butt">
+                    <button id="btn0" class="buttonClass">0</button>
+                    <button id="btn1" class="buttonClass">1</button>
+                    <button id="btnClr" class="buttonClass">C</button>
+                    <button id="btnEql" class="buttonClass">=</button>
+                    <br>
+                    <button id="btnSum" class="buttonClass1">+</button>
+                    <button id="btnSub" class="buttonClass1">-</button>
+                    <button id="btnMul" class="buttonClass1">*</button>
+                    <button id="btnDiv" class="buttonClass1">/</button>
+                </div>
+            </div>        
+        </div>
+        <script>
+            var res=document.getElementById('res');
+            var C=document.getElementById('btnClr');
+            var operator,operand1="",operand2="";
+            var result="",flag=0;
+            var eq=document.getElementById('btnEql');
+            var btn1=document.getElementById('btn1');
+            var btn0=document.getElementById('btn0'); 
+            var btnSum=document.getElementById('btnSum');
+            var btnSub=document.getElementById('btnSub');           
+            var btnmul=document.getElementById('btnMul');
+            var btndiv=document.getElementById('btnDiv');
+
+            btn1.onclick=()=>{
+                res.innerHTML+="1";
+                
+                if(flag==1){
+                    operand2=operand2.concat("1");
+                }
+                else{
+                    operand1=operand1.concat("1");
+                }
+                
+            }
+
+            btn0.onclick=()=>{
+                res.innerHTML+="0";
+                if(flag==1){
+                    operand2=operand2.concat("0");
+                }
+                else{
+                    operand1=operand1.concat("0");
+                }
+            }
+
+            C.onclick = ()=>{
+                operand1="";
+                operand2="";
+                res.innerHTML="";
+            }
+
+            eq.onclick=()=>{
+                
+                operand1=parseInt(operand1,2);
+                operand2=parseInt(operand2,2);
+                
+                if(operator=="+"){
+                    result=operand1+operand2;
+                    
+                }
+                if(operator=="-"){
+                    
+                    result=operand1-operand2;
+                }
+                if(operator=="*"){
+                    
+                    result=operand1*operand2;
+                }
+                if(operator=="/"){
+                    
+                    result=operand1/operand2;
+                }
+                flag=0;
+                result=parseInt(result,10).toString(2);
+                
+                operand1=result;
+                operand2="";
+                res.innerHTML=result;
+               
+
+            }
+            
+            btnSum.onclick=()=>{
+                operator=btnSum.innerHTML;
+                res.innerHTML+=operator;
+                flag=1;
+            }
+            btnSub.onclick=()=>{
+                operator=btnSub.innerHTML;
+                res.innerHTML+=operator;
+                flag=1;
+            }
+            btndiv.onclick=()=>{
+                operator=btndiv.innerHTML;
+                res.innerHTML+=operator;
+                flag=1;
+            }
+            btnmul.onclick=()=>{
+                operator=btnmul.innerHTML;
+                res.innerHTML+=operator;
+                flag=1;
+            }
+        </script>
+    </body>
+</html>
